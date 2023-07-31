@@ -1,21 +1,24 @@
 import React from 'react';
+import FormComp from '../components/form';
 
 const Login: React.FC = () => {
     return (
-        <React.Fragment>
-            <main id='login' className='w-[100vw] h-[100vh] fixed bg-orange-100'>
-                <div className="w-[100%] h-[100%] top-[-620px] absolute ">
-                    <div className='[100%] h-[100%] grid justify-items-stretch '>
-                        <div className="w-[1495px] h-[1100px] justify-self-center bg-indigo-400 rounded-full z-10" />                 
+        <>
+            <main id='login' className='w-[100vw] h-[100vh] fixed bg-orange-50'>
+                <div className="w-[100%] h-[100%] absolute ">
+                    <div className='w-[100%] h-[100%] flex items-center'>
+                        <section className='w-[1600px] h-[1495px] bg-[#6588E6] fixed rounded-full top-[-1000px] // max-[1280px]:w-[1280px] max-[1280px]:top-[-1000px] //  max-[1024px]:w-[1025px] max-[1024px]:h-[1430px] max-[360px]:h-[640px]' >
+                        </section>
                     </div>
+                    
                 </div>
 
                 <div className='w-[100%] h-[100%] grid justify-items-stretch'>
-                    <div className="w-[480px] h-[650px] justify-self-center self-center bg-indigo-950 rounded-[95px] z-50">
+                    <div className="w-[32%] h-[100%] justify-self-center self-center bg-indigo-950 rounded-[95px] z-50 mt-[3%] // max-[1024px]:w-[36%] max-[1024px]:h-[95%] max-[1024px]:mt-[1%] max-[1024px]:rounded-[70px] ">
 
-                        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+                        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12">
                             <div className='flex items-center justify-center w-full'>
-                                <img alt='userlogo'  className="w-[80px] h-[80px] -my-3 rounded-[35%]" src="./assets/images/icons8-user-96 (2).png" />
+                                <img alt='userlogo'  className="w-[80px] h-[80px] -my-3 rounded-[35%] max-[1024px]:w-[70px] max-[1024px]:h-[70px]" src="./assets/images/icons8-user-96 (2).png" />
                             </div>
 
                             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -24,60 +27,11 @@ const Login: React.FC = () => {
                                 </h1>
                             </div>
 
-                            <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-                                <form className="space-y-2" action="#" method="POST">
-                                    <div>
-                                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
-                                            Email
-                                        </label>
-
-                                        <div className="mt-1">
-                                            <input
-                                            id="email"
-                                            name="email"
-                                            type="email"
-                                            autoComplete="email"
-                                            required
-                                            className="block rounded-[22px] w-full h-12 border-0 p-5 bg-orange-50 text-gray-900 shadow-sm focus:outline-none focus:bg-orange-100"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div className="flex items-center justify-between">
-                                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-white">
-                                            Senha
-                                            </label>
-                                    </div>
-                                    
-                                    <div className="mt-1">
-                                        <input
-                                        id="password"
-                                        name="password"
-                                        type="password"
-                                        autoComplete="current-password"
-                                        required
-                                        className="block rounded-[22px] w-full h-12 border-0 p-5 bg-orange-50 text-gray-900 shadow-sm focus:outline-none focus:bg-orange-100"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className='w-full pt-5 flex justify-center'>
-                                    <button
-                                        type="submit"
-                                        className="flex w-80 h-14 justify-center items-center rounded-[22px] bg-indigo-400 px-3 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                    >
-                                        CADASTRAR
-                                    </button>
-                                </div>
-                                </form>
-
-                                <div className="sm:mx-auto sm:w-full sm:max-w-sm flex justify-center">
-                                    <a href='/signup' className="mt-2 text-center text-2xl leading-9 tracking-tight text-white text-[20px]">
-                                        Não tem uma conta? Cadastre-se!
-                                    </a>
-                                </div>
+                            <div>
+                                <FormComp mode='login' textButton='LOGAR'/>
                             </div>
+
+                            
                         </div>
                     </div>
                 <div>
@@ -108,7 +62,7 @@ const Login: React.FC = () => {
             </div>
         </main>
 
-        </React.Fragment>
+        </>
     );
 };
 

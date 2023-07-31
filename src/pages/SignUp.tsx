@@ -1,20 +1,22 @@
 import React from 'react';
+import FormComp from '../components/form';
 
 const SignUp: React.FC = () => {
     return (
         <React.Fragment>
-            <main id='signup' className='w-[100vw] h-[100vh] fixed bg-orange-100'>
-                <div className="w-[100%] h-[100%] top-[-620px] absolute ">
-                    <div className='[100%] h-[100%] grid justify-items-stretch '>
-                        <div className="w-[1495px] h-[1100px] justify-self-center bg-indigo-400 rounded-full z-10" />                 
+            <main id='login' className='w-[100vw] h-[100vh] fixed bg-orange-50'>
+                <div className="w-[100%] h-[100%] absolute">
+                    <div className='w-[100%] h-[100%] flex items-center z-40'>
+                        <section className='w-[1600px] h-[1495px] bg-[#6588E6] fixed rounded-full top-[-1000px] // max-[1280px]:w-[1280px] max-[1280px]:top-[-1000px] //  max-[1024px]:w-[1025px] max-[1024px]:h-[1430px] max-[360px]:h-[640px]' >
+                        </section>
                     </div>
                 </div>
 
                 <div className='w-[100%] h-[100%] grid justify-items-stretch'>
                     <div className="w-[480px] h-[650px] justify-self-center self-center bg-indigo-950 rounded-[95px] z-50">
 
-                        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                            <div className='flex items-center justify-center w-full mt-5'>
+                        <div className="flex min-h-full flex-col justify-center">
+                            <div className='flex items-center justify-center w-full mt-3'>
                                 <img alt='userlogo' className="w-[80px] h-[80px] -my-3 rounded-[35%]" src="./assets/images/icons8-user-96 (2).png" />
                             </div>
 
@@ -24,86 +26,12 @@ const SignUp: React.FC = () => {
                                 </h1>
                             </div>
 
-                            <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-                                <form className="space-y-2" action="#" method="POST">
-                                    <div>
-                                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
-                                            Email
-                                        </label>
-
-                                        <div className="mt-1">
-                                            <input
-                                            id="email"
-                                            name="email"
-                                            type="email"
-                                            autoComplete="email"
-                                            required
-                                            className="block rounded-[22px] w-full h-12 border-0 p-5 bg-orange-50 text-gray-900 shadow-sm focus:outline-none focus:bg-orange-100"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div className="flex items-center justify-between">
-                                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-white">
-                                            Senha
-                                            </label>
-                                    </div>
-                                    
-                                    <div className="mt-1">
-                                        <input
-                                        id="password"
-                                        name="password"
-                                        type="password"
-                                        autoComplete="current-password"
-                                        required
-                                        className="block rounded-[22px] w-full h-12 border-0 p-5 bg-orange-50 text-gray-900 shadow-sm focus:outline-none focus:bg-orange-100"
-                                        />
-                                    </div>
-
-                                    
-                                    </div>
-
-                                    <div>
-                                        <div className="flex items-center justify-between">
-                                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-white">
-                                            Repetir a senha
-                                            </label>
-                                    </div>
-                                    
-                                    <div className="mt-1">
-                                        <input
-                                        id="repassword"
-                                        name="repassword"
-                                        type="password"
-                                        autoComplete="current-password"
-                                        required
-                                        className="block rounded-[22px] w-full h-12 border-0 p-5 bg-orange-50 text-gray-900 shadow-sm focus:outline-none focus:bg-orange-100"
-                                        />
-                                    </div>
-
-                                    
-                                </div>
-
-                                <div className='w-full pt-5 flex justify-center'>
-                                    <button
-                                        type="submit"
-                                        className="flex w-80 h-14 justify-center items-center rounded-[22px] bg-indigo-400 px-3 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                    >
-                                        LOGAR
-                                    </button>
-                                </div>
-                                </form>
-
-                                <div className="sm:mx-auto sm:w-full sm:max-w-sm flex justify-center">
-                                    <a href='/' className="mt-2 text-center text-2xl leading-9 tracking-tight text-white text-[20px]">
-                                        já tem uma conta? Faça o login!
-                                    </a>
-                                </div>
+                            <div>
+                                <FormComp mode='signUp' textButton='CADASTRAR' />
                             </div>
                         </div>
                     </div>
-                <div>
+                <div className='z-10'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="1810" height="849" className='absolute top-0' fill="none"><path stroke="#E66371" stroke-dasharray="10 10" stroke-linecap="round" stroke-width="5" d="M2100.75 123.04c-28.21-9.489-53.8-20.388-83.85-25.374-99.27-16.474-182.98 12.336-262.58 71.795-62.06 46.346-115.42 106.446-154.79 172.247-29.91 49.972-44.66 110.321-63.58 164.634-16.86 48.43-36.11 96.844-57.43 143.589-26.92 59.041-54.43 104.455-106.72 145.231-131.13 102.244-289.07 138.278-454.692 134.484-82.397-1.888-156.812-14.812-230.8-51.346-82.857-40.913-156.134-95.325-218.823-161.799-51.722-54.844-105.843-104.312-162.159-154.634-58.859-52.595-116.705-101.282-187.343-138.962-49.544-26.428-103.227-44.834-156.016-64.032-25.568-9.299-51.294-21.077-78.009-26.27"/><path stroke="#F9BD7E" stroke-dasharray="10 10" stroke-linecap="round" stroke-width="5" d="M-166.421 1161.79c28.977 6.95 55.485 15.54 85.872 17.85 100.403 7.62 181.065-28.48 254.772-94.74 57.452-51.64 104.964-116.215 138.011-185.227 25.097-52.411 34.138-113.815 47.888-169.577 12.262-49.722 26.894-99.638 43.743-148.075 21.281-61.178 44.421-108.838 92.678-154.072 121.004-113.424 274.912-163.286 440.204-174.165 82.233-5.412 157.553.873 234.653 30.708 86.34 33.41 164.41 81.111 233.07 141.761 56.64 50.039 115.17 94.512 175.97 139.641 63.54 47.168 125.71 90.534 199.58 121.805 51.81 21.934 107 35.514 161.37 49.96 26.33 6.997 53.05 16.45 80.14 19.257"/><path stroke="#6588E6" stroke-dasharray="10 10" stroke-linecap="round" stroke-width="5" d="M-184.332 570.382c24.154 17.041 45.389 34.694 72.65 47.945 90.073 43.785 178.782 39.843 272.721 5.415 73.224-26.836 213.875 99.922 240.461-88.242 0-208.5 352.709 95.949 521.034 121.722 190.086 29.105 495.246-164.003 600.016-164.003 117.37-30.051 371.65 61.06 410.51 125.109"/></svg>
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="90" height="78" className='w-56 absolute bottom-[330px] left-[10px] ' fill="none"><g fill="#22264C"><path d="M89.531 39.718c0 6.904-5.596 12.5-12.5 12.5-6.903 0-12.5-5.596-12.5-12.5 0-6.903 5.597-12.5 12.5-12.5 6.904 0 12.5 5.597 12.5 12.5Zm-22.889 0c0 5.738 4.652 10.389 10.39 10.389 5.737 0 10.388-4.651 10.388-10.389 0-5.738-4.651-10.389-10.389-10.389-5.737 0-10.389 4.651-10.389 10.39Z"/><path d="M2.863 35.886c1.581-19.82 18.93-34.604 38.749-33.023 19.82 1.581 34.604 18.93 33.023 38.749-1.581 19.82-18.93 34.604-38.749 33.023-19.82-1.581-34.604-18.93-33.023-38.749Zm67.97 5.422C72.246 23.59 59.028 8.079 41.309 6.666 23.589 5.252 8.079 18.47 6.665 36.19 5.252 53.91 18.47 69.42 36.19 70.833c17.72 1.413 33.23-11.805 34.644-29.524Z"/></g></svg>
