@@ -1,5 +1,5 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../store/hooks';
 import { useAppDispatch } from '../store/hooks';
 import { getNotesAsyncThunk, loginAsyncThunk, userCreateAsyncThunk } from '../store/modules/UserLogged';
@@ -106,7 +106,7 @@ const FormComp: React.FC<FormCompProps> = ({ textButton, mode }) => {
                 dispatch(userCreateAsyncThunk({ email, password, repassword }));
 
             setTimeout(() => {
-                navigate('/login');
+                navigate('/');
             }, 1000);
         }
     }
@@ -182,7 +182,6 @@ const FormComp: React.FC<FormCompProps> = ({ textButton, mode }) => {
             <div className="w-full pt-5 flex justify-center">
                 <button
                 type="submit"
-                disabled={disabled}
                 className="flex w-[85%] h-14 justify-center items-center rounded-[22px] bg-indigo-400 px-3 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                 {textButton}
