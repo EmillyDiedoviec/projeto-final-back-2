@@ -2,6 +2,7 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../store/hooks';
 import { useAppDispatch } from '../store/hooks';
+import { getUsersAsyncThunk } from '../store/modules/UsersSlice';
 import { getNotesAsyncThunk, loginAsyncThunk, userCreateAsyncThunk } from '../store/modules/UserLogged';
 
 interface FormCompProps {
@@ -28,86 +29,74 @@ const FormComp: React.FC<FormCompProps> = ({ textButton, mode }) => {
     const [alertErrorExist, setAlertErrorExist] = useState(false);
 
     useEffect(() => {
-        if (mode === 'signUp') {
-            const emailValid = email.includes('.com') || (email.includes('.com.br') && email.includes('@'));
-
-            if (email.length > 0) {
-                setErrorEmail(!emailValid);
-            }
-
-            const passwordValid = password.length >= 6;
-            if (password.length > 0) {
-                setErrorPassword(!passwordValid);
-            }
-
-            const repasswordValid = password === repassword;
-            if (repassword.length > 0) {
-                setErrorRepassword(!repasswordValid);
-            }
-
-            setDisabled(!(emailValid && passwordValid && repasswordValid));
+        if (mode === "signUp") {
+          const emailValid =
+            (email.endsWith(".com") || email.endsWith(".com.br")) && email.includes("@");
+    
+          if (email.length > 0) {
+            setErrorEmail(!emailValid);
+          }
+    
+          const passwordValid = password.length >= 6;
+          if (password.length > 0) {
+            setErrorPassword(!passwordValid);
+          }
+    
+          const repasswordValid = password === repassword;
+    
+          if (repassword.length > 0) {
+            setErrorRepassword(!repasswordValid);
+          }
+    
+          setDisabled(!(emailValid && passwordValid && repasswordValid));
         }
-    }, [email, password, repassword, mode]);
-
-    useEffect(() => {
+      }, [email, password, repassword, mode]);
+    
+        useEffect(() => {
         if (userlogged.email) {
-            navigate('/notes');
+          navigate("/notes");
         }
-    }, [userlogged]);
+      }, [userlogged]);
 
-    function handleSubmit(evento: FormEvent) {
+      function handleSubmit(evento: React.FormEvent<HTMLFormElement>) {
         evento.preventDefault();
-
-        if (mode === 'login') {
-            const user = {
-                email: email,
-                password: password
-            };
-
-            const userExist = listUsers.find(
-                (value) =>
-                    value.email === user.email &&
-                            value.password === user.password
-            );
-            if (!userExist) {
-                setAlertError(true);
-                setTimeout(() => {
-                    setAlertError(false);
-                }, 5000);
-                return;
-            } 
-
-            dispatch(loginAsyncThunk(user));
-            dispatch(getNotesAsyncThunk(email)); 
+        dispatch(getUsersAsyncThunk());
+        const newUser = {
+          email: email,
+          password: password,
+        };
+    
+        if (mode === "login") {
+          const userExist = listUsers.find(
+            (value) => value.email === newUser.email && value.password === newUser.password,
+          );
+          if (!userExist) {
+            setAlertError(true);
+            setTimeout(() => {
+              setAlertError(false);
+            }, 5000);
+            navigate("/notes")
+            dispatch(loginAsyncThunk(newUser));
+            return;
+          }
+          dispatch(getNotesAsyncThunk(email));
 
         } else {
-            const newUser = {
-                email,
-                password,
-                repassword,
-            };
-
-            const retorno = listUsers.some(
-                (value) => value.email === newUser.email
-            );
-            if (retorno) {
-                setAlertErrorExist(true);
-                setTimeout(() => {
-                    setAlertErrorExist(false);
-                }, 5000);
-                return;
-            }
-        
+          const retorno = listUsers.some((value) => value.email === newUser.email);
+          if (retorno) {
             setAlertSucess(true);
             setTimeout(() => {
-                setAlertSucess(false);
-            }, 5000);
-            
-                dispatch(userCreateAsyncThunk({ email, password, repassword }));
-
-            setTimeout(() => {
-                navigate('/');
-            }, 1000);
+              setAlertSucess(false);
+            }, 3000);
+            return;
+          }
+    
+          setAlertSucess(true);
+          setTimeout(() => {
+            setAlertSucess(false);
+            navigate("/signup");
+          }, 3000);
+          dispatch(userCreateAsyncThunk({ email, password, repassword }));
         }
     }
 
