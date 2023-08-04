@@ -66,11 +66,11 @@ export const noteCreateAsyncThunk = createAsyncThunk('note', async (newTask: not
 
     try {
         const response = await api.post(`/tasks/${email}`, {
+            userEmail: newTask.email,
             title: newTask.title,
             description: newTask.description
         });
         
-
         return response.data;
     } catch (error) {
         console.error('Erro ao criar tarefa:', error);

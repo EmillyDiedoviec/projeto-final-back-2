@@ -70,16 +70,18 @@ const FormComp: React.FC<FormCompProps> = ({ textButton, mode }) => {
           const userExist = listUsers.find(
             (value) => value.email === newUser.email && value.password === newUser.password,
           );
+
+          dispatch(loginAsyncThunk(newUser));
           if (!userExist) {
             setAlertError(true);
             setTimeout(() => {
               setAlertError(false);
             }, 5000);
-            navigate("/notes")
-            dispatch(loginAsyncThunk(newUser));
             return;
           }
-          dispatch(getNotesAsyncThunk(email));
+
+            navigate("/notes")
+            dispatch(getNotesAsyncThunk(email));
 
         } else {
           const retorno = listUsers.some((value) => value.email === newUser.email);
@@ -94,7 +96,7 @@ const FormComp: React.FC<FormCompProps> = ({ textButton, mode }) => {
           setAlertSucess(true);
           setTimeout(() => {
             setAlertSucess(false);
-            navigate("/signup");
+            navigate("/");
           }, 3000);
           dispatch(userCreateAsyncThunk({ email, password, repassword }));
         }
